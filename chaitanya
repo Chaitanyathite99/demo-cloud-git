@@ -1,10 +1,10 @@
-REATE TABLE students(
-  student_id INT NOT NULL AUTO_INCREMENT,
-  student_name VARCHAR(100) NOT NULL,
-  student_addr VARCHAR(100) NOT NULL,
-  student_age VARCHAR(3) NOT NULL,
-  student_qual VARCHAR(20) NOT NULL,
-  student_percent VARCHAR(10) NOT NULL,
-  student_year_passed VARCHAR(10) NOT NULL,
+CREATE TABLE students(
+  student_id INT NOT NULL AUTO_INCR,
+  student_name chaitanya thite,
+  student_addr moshi pune,
+  student_age 25,
+  student_qual bca,
+  student_percent 90,
+  student_year_passed 2025,
   PRIMARY KEY (student_id)
 );
