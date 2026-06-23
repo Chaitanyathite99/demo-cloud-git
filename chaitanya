@@ -8,3 +8,7 @@ CREATE TABLE students(
   student_year_passed 2025,
   PRIMARY KEY (student_id)
 );
+
+
+
+this is my studentdb table data i get this from sir repo
