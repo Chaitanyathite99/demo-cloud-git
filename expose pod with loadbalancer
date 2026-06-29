@@ -1,0 +1,9 @@
+cluster active - then go to access - add permission eksadmin and loadbalancer policy
+aws configure - aceess key from iam 
+aws eks update-kubeconfig --name demo-cluster --region ap-south-1
+kubectl get nodes
+kubectl run nginxpod --image nginx:latest
+kubectl get pods
+kubectl expose pod nginxpod --port=80 --target-port=80 --type=LoadBalancer
+        ( port = “The Service will listen on port 80.”  targetPort= Nginx listens on port 80 , “Forward traffic from the Service to port 80 inside the Pod.” )
+kubectl get svc    (check status of external ip) after 2-3 min check again with this command
