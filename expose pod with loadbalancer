@@ -25,6 +25,7 @@ spec:
       targetPort: 80
 
 
-kubectl svc apply -f .
+kubectl svc apply -f service.yaml
 aws ec2 describe-subnets --subnet-ids subnet-04ff6aebbae9df70c subnet-00e25a111a7833393 subnet-0dfd3dd9e37b85026 --query "Subnets[*].{Subnet:Subnetid,Tags:Tags}"
 kubectl describe svc nginx
+
