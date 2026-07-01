@@ -7,3 +7,24 @@ kubectl get pods
 kubectl expose pod nginxpod --port=80 --target-port=80 --type=LoadBalancer
         ( port = “The Service will listen on port 80.”  targetPort= Nginx listens on port 80 , “Forward traffic from the Service to port 80 inside the Pod.” )
 kubectl get svc    (check status of external ip) after 2-3 min check again with this command
+ nano service.yaml (given below)
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
+spec:
+  type: LoadBalancer
+  selector:
+    run: nginx
+  ports:
+    - port: 80
+      targetPort: 80
+
+
+kubectl svc apply -f .
+aws ec2 describe-subnets --subnet-ids subnet-04ff6aebbae9df70c subnet-00e25a111a7833393 subnet-0dfd3dd9e37b85026 --query "Subnets[*].{Subnet:Subnetid,Tags:Tags}"
+kubectl describe svc nginx
