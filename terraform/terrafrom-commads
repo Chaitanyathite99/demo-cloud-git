@@ -1,0 +1,16 @@
+{
+vim ec2.tf  == Creates or edits the ec2.tf Terraform configuration file.
+vim provider == Creates or edits a file named provider (normally this should be provider.tf).
+
+wget -O - https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(grep -oP '(?<=UBUNTU_CODENAME=).*' /etc/os-release || lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+sudo apt update && sudo apt install terraform == install terraform
+
+terraform init == Initializes the Terraform working directory and downloads required provider plugins.
+terraform validate == Validates the Terraform configuration for syntax and configuration errors.
+terraform plan == Shows the infrastructure changes Terraform will make before applying them.
+apt install awscli == Installs the AWS CLI tool.
+aws configure == profile configs == Configures AWS credentials and region under the profile named configs.
+terraform plan == Generates an execution plan using the configured AWS credentials.
+terraform apply == Creates or updates AWS resources according to the Terraform configuration after confirmation.
+}
