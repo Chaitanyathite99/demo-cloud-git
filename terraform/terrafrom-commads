@@ -19,5 +19,7 @@ aws configure --profile configs == Configures AWS credentials and region under t
 
 terraform plan == Generates an execution plan using the configured AWS credentials.terraform apply == Creates or updates AWS resources according to the Terraform configuration after confirmation.
 
+terraform apply == apply with configuration
+
 terraform destroy == Destroys all infrastructure managed by the current Terraform configuration after asking for confirmation.
 }
