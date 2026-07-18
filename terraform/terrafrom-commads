@@ -15,7 +15,7 @@ terraform plan == Shows the infrastructure changes Terraform will make before ap
 
 apt install awscli == Installs the AWS CLI tool.
 
-aws configure == profile configs == Configures AWS credentials and region under the profile named configs.
+aws configure --profile configs == Configures AWS credentials and region under the profile named configs.
 
 terraform plan == Generates an execution plan using the configured AWS credentials.terraform apply == Creates or updates AWS resources according to the Terraform configuration after confirmation.
 
