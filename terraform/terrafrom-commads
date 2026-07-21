@@ -1,4 +1,5 @@
-{
+{ launch intance with the commands and with ec2.tf provider.tr files
+
 vim ec2.tf  == Creates or edits the ec2.tf Terraform configuration file.
 
 vim provider == Creates or edits a file named provider (normally this should be provider.tf).
@@ -22,4 +23,16 @@ terraform plan == Generates an execution plan using the configured AWS credentia
 terraform apply == apply with configuration
 
 terraform destroy == Destroys all infrastructure managed by the current Terraform configuration after asking for confirmation.
+}
+
+
+
+
+
+{ 
+
+launch intance with the commands and with ec2.tf provider.tr and variable.tf files
+
+same as above steps
+
 }
