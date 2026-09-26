@@ -59,3 +59,34 @@ pack build suggest
 Copy the google builder and paste in the below command
 pack build --builder=<your-builder-from-above-command> node-app
 image > [!Note] > This build will take some time be patient.
+
+
+my files
+
+update --> apt update
+install docker --> from website command 
+
+install pack CLI -->
+check your EC2 architecture: --> uname -m (output = x86_64)
+run --> curl -sSL "https://github.com/buildpacks/pack/releases/download/v0.40.9/pack-v0.40.9-linux.tgz" | sudo tar -C /usr/local/bin/ --no-same-owner -xzv pack
+check version --> pack version(output = 0.40.9+git-8210eb1.build-6996)
+get suggestion --> pack build suggest
+
+suggested builder --> gcr.io/buildpacks/builder:google-22 (google-builder)
+
+use suggested builder and create image -->
+pack build <IMAGE-NAME> --builder <BUILDER>
+pack build notes-app-demo --builder=gcr.io/buildpacks/builder:google-22
+
+------*(if container not created or exited check requirement.txt file and check version)*-------------
+
+image created and check docker images -->
+docker images
+
+create container --> (if container not created or exited check requirement.txt file and check version )
+rebuild with  pack builder command --> if ne space is enough --> docker system df --> docker system prune -a --> pack build command.
+
+check version contineously. failed due to version.
+
+
+
