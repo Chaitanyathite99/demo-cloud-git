@@ -1,0 +1,73 @@
+#!/bin/bash
+
+code_clone(){
+echo "cloning the note-app..."
+git clone https://github.com/dipakkokate/notes-app.git
+}
+
+cd notepad-app
+
+install_requirements(){
+echo "installing dependencies"
+sudo apt update 
+sudo apt install nodejs
+
+# Add Docker's official GPG key:
+sudo apt update
+sudo apt install ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+# Add the repository to Apt sources:
+sudo tee /etc/apt/sources.list.d/docker.sources <<EOF
+Types: deb
+URIs: https://download.docker.com/linux/ubuntu
+Suites: $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}")
+Components: stable
+Architectures: $(dpkg --print-architecture)
+Signed-By: /etc/apt/keyrings/docker.asc
+EOF
+
+sudo apt update
+
+sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
+}
+
+required_restarts() {
+
+    echo "Starting Docker service..."
+
+    sudo systemctl enable docker
+
+    sudo systemctl restart docker
+
+}
+
+deploy() {
+
+    echo "Building and deploying the application..."
+
+    sudo docker compose up -d --build
+}
+
+echo "************deployment started*************"
+
+if ! code_clone ; then
+echo "the code directory exists"
+cd node-todo-app
+fi
+
+if ! install_requirements ; then
+echo "install failed"
+exit 1
+fi
+
+if ! required_restarts; then
+echo "system fault"
+exit 1
+fi
+
+deploy
+
+echo "*****************deployment done***************"
