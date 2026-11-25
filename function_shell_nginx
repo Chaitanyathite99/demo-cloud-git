@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ULTIMATE DEVOPS COMMAND CENTER</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#050910;color:#00ff9c;font-family:Courier New,monospace;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;background:linear-gradient(#00ff9c08 1px,transparent 1px),linear-gradient(90deg,#00ff9c08 1px,transparent 1px);background-size:35px 35px;pointer-events:none;z-index:-1}
+header{text-align:center;padding:30px 15px;background:#08121c;border-bottom:1px solid #00ff9c55}
+header h1{font-size:30px;letter-spacing:3px;text-shadow:0 0 15px #00ff9c}
+header p{color:#8aa5a0;margin-top:12px;font-size:12px}
+.status{display:flex;justify-content:space-around;flex-wrap:wrap;gap:12px;padding:16px;background:#0b1721;border-bottom:1px solid #00ff9c44;font-size:12px}
+.online{color:#00ff9c}
+.container{padding:30px 5%}
+.title{color:#00eaff;margin:28px 0 18px;font-size:17px;letter-spacing:2px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px}
+.card{background:#0b1721;border:1px solid #00ff9c44;padding:22px;border-radius:8px;transition:.3s}
+.card:hover{transform:translateY(-5px);border-color:#00ff9c;box-shadow:0 0 20px #00ff9c33}
+.card h3{color:#00eaff;margin-bottom:16px;font-size:15px}
+.card p{color:#9bb8b0;font-size:12px;margin-top:12px}
+.value{font-size:29px;font-weight:bold;color:#00ff9c}
+.bar{height:8px;background:#1c3036;margin-top:14px;border-radius:10px;overflow:hidden}
+.fill{height:100%;background:#00ff9c;box-shadow:0 0 10px #00ff9c;transition:width 1s}
+.pipeline{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px}
+.stage{background:#10222b;padding:18px 8px;text-align:center;border:1px solid #00ff9c44;border-radius:5px;font-size:12px;color:#9bb8b0;transition:.3s}
+.stage.active{color:#00ff9c;border-color:#00ff9c;box-shadow:0 0 15px #00ff9c55}
+.terminal{background:#020609;border:1px solid #00ff9c66;padding:20px;height:260px;overflow:auto;border-radius:8px;box-shadow:0 0 20px #00ff9c18}
+.terminal h3{color:#00eaff;margin-bottom:15px}
+#logs{font-size:12px;line-height:2;color:#00ff9c;overflow-wrap:anywhere}
+button{background:transparent;color:#00ff9c;border:1px solid #00ff9c;padding:13px 22px;cursor:pointer;font-family:inherit;margin:15px 5px;transition:.3s}
+button:hover{background:#00ff9c;color:#050910;box-shadow:0 0 20px #00ff9c}
+.deployment{text-align:center;padding:35px;background:#0b1721;border:1px solid #00ff9c55;border-radius:8px}
+.deployment h2{color:#00ff9c;text-shadow:0 0 15px #00ff9c}
+footer{text-align:center;padding:25px;color:#53716b;border-top:1px solid #00ff9c33;font-size:12px}
+.blink{animation:blink 1s infinite}
+@keyframes blink{50%{opacity:.2}}
+@media(max-width:600px){header h1{font-size:19px}.status{justify-content:flex-start}}
+</style>
+</head>
+<body>
+
+<header>
+<h1>🚀 ULTIMATE DEVOPS COMMAND CENTER</h1>
+<p>LINUX | AWS | DOCKER | KUBERNETES | JENKINS | TERRAFORM | NGINX</p>
+</header>
+
+<div class="status">
+<span>● SYSTEM: <b class="online">ONLINE</b></span>
+<span>● NGINX: <b class="online">ACTIVE</b></span>
+<span>● SECURITY: <b class="online">DEMO MODE</b></span>
+<span id="clock">TIME: --:--:--</span>
+</div>
+
+<div class="container">
+
+<h2 class="title">▰ SYSTEM RESOURCE MONITOR</h2>
+
+<div class="grid">
+<div class="card">
+<h3>⚡ CPU USAGE</h3>
+<div class="value" id="cpu">72%</div>
+<div class="bar"><div class="fill" id="cpuBar"></div></div>
+<p>Simulated CPU utilization</p>
+</div>
+
+<div class="card">
+<h3>🧠 MEMORY</h3>
+<div class="value" id="ram">61%</div>
+<div class="bar"><div class="fill" id="ramBar"></div></div>
+<p>Simulated RAM utilization</p>
+</div>
+
+<div class="card">
+<h3>💾 STORAGE</h3>
+<div class="value" id="disk">83%</div>
+<div class="bar"><div class="fill" id="diskBar"></div></div>
+<p>Simulated disk utilization</p>
+</div>
+
+<div class="card">
+<h3>🌐 NETWORK</h3>
+<div class="value" id="network">125</div>
+<p>Mbps (simulated traffic)</p>
+<p>Network monitoring demo</p>
+</div>
+</div>
+
+<h2 class="title">▰ DEVOPS INFRASTRUCTURE</h2>
+
+<div class="grid">
+<div class="card"><h3>🐧 LINUX SERVER</h3><p>OS: Ubuntu Linux</p><p>Status: <b class="online">● DEMO ONLINE</b></p></div>
+<div class="card"><h3>🐳 DOCKER ENGINE</h3><p>Container Management</p><p>Status: <b class="online">● DEMO READY</b></p></div>
+<div class="card"><h3>☸️ KUBERNETES</h3><p>Container Orchestration</p><p>Status: <b class="online">● DEMO READY</b></p></div>
+<div class="card"><h3>🔧 JENKINS CI/CD</h3><p>Pipeline Automation</p><p>Status: <b class="online">● DEMO READY</b></p></div>
+<div class="card"><h3>☁️ AWS CLOUD</h3><p>Cloud Infrastructure</p><p>Status: <b class="online">● DEMO READY</b></p></div>
+<div class="card"><h3>🌐 NGINX SERVER</h3><p>Web Server / Reverse Proxy</p><p>Status: <b class="online">● PAGE SERVED</b></p></div>
+<div class="card"><h3>🏗️ TERRAFORM</h3><p>Infrastructure as Code</p><p>Status: <b class="online">● DEMO READY</b></p></div>
+<div class="card"><h3>📊 PROMETHEUS</h3><p>Metrics Monitoring</p><p>Status: <b class="online">● DEMO READY</b></p></div>
+</div>
+
+<h2 class="title">▰ CI/CD AUTOMATION PIPELINE</h2>
+
+<div class="pipeline" id="pipeline">
+<div class="stage">01<br>GIT CHECKOUT</div>
+<div class="stage">02<br>BUILD</div>
+<div class="stage">03<br>UNIT TEST</div>
+<div class="stage">04<br>SONARQUBE</div>
+<div class="stage">05<br>SECURITY SCAN</div>
+<div class="stage">06<br>DOCKER BUILD</div>
+<div class="stage">07<br>DOCKER PUSH</div>
+<div class="stage">08<br>DEPLOY</div>
+</div>
+
+<center>
+<button onclick="runPipeline()">🚀 EXECUTE PIPELINE</button>
+<button onclick="resetPipeline()">↻ RESET PIPELINE</button>
+</center>
+
+<h2 class="title">▰ LIVE DEVOPS TERMINAL</h2>
+
+<div class="terminal">
+<h3>root@devops-server:~# <span class="blink">_</span></h3>
+<div id="logs"></div>
+</div>
+
+<center>
+<button onclick="systemScan()">⚡ EXECUTE SYSTEM SCAN</button>
+<button onclick="clearLogs()">CLEAR TERMINAL</button>
+</center>
+
+<div class="deployment">
+<h2>🔥 DEVOPS DEPLOYMENT ENGINE</h2>
+<br>
+<p>APPLICATION DELIVERY PLATFORM</p>
+<br>
+<p>CODE → BUILD → TEST → CONTAINERIZE → DEPLOY</p>
+<br>
+<h3 class="online">🚀 CREATED BY CHAITANYA THITE</h3>
+<br>
+<p>ALL DASHBOARD METRICS ARE SIMULATED</p>
+</div>
+
+</div>
+
+<footer>
+ULTIMATE DEVOPS COMMAND CENTER
+<br><br>
+POWERED BY NGINX + HTML + CSS + JAVASCRIPT
+<br><br>
+VERSION 1.0 | SYSTEM SIMULATION MODE
+</footer>
+
+<script>
+function updateClock(){
+document.getElementById("clock").innerText="TIME: "+new Date().toLocaleTimeString();
+}
+setInterval(updateClock,1000);
+updateClock();
+
+function updateMetrics(){
+let cpu=Math.floor(Math.random()*40)+40;
+let ram=Math.floor(Math.random()*30)+50;
+let disk=Math.floor(Math.random()*15)+75;
+let network=Math.floor(Math.random()*200)+50;
+document.getElementById("cpu").innerText=cpu+"%";
+document.getElementById("ram").innerText=ram+"%";
+document.getElementById("disk").innerText=disk+"%";
+document.getElementById("network").innerText=network;
+document.getElementById("cpuBar").style.width=cpu+"%";
+document.getElementById("ramBar").style.width=ram+"%";
+document.getElementById("diskBar").style.width=disk+"%";
+}
+updateMetrics();
+setInterval(updateMetrics,3000);
+
+const messages=[
+"[SYSTEM] Initializing DevOps engine...",
+"[LINUX] Linux environment initialized.",
+"[DOCKER] Container engine demo initialized.",
+"[KUBERNETES] Cluster simulation ready.",
+"[AWS] Cloud infrastructure demo initialized.",
+"[JENKINS] CI/CD automation initialized.",
+"[NGINX] Web server page loaded.",
+"[TERRAFORM] Infrastructure simulation ready.",
+"[PROMETHEUS] Monitoring demo initialized.",
+"[SECURITY] Security scan simulation completed.",
+"[NETWORK] Network monitoring simulation running.",
+"[SYSTEM] All demo modules operational."
+];
+
+function systemScan(){
+let logs=document.getElementById("logs");
+logs.innerHTML="";
+messages.forEach((message,index)=>{
+setTimeout(()=>{
+logs.innerHTML+="<br>> "+message;
+logs.scrollTop=logs.scrollHeight;
+},index*350);
+});
+}
+
+function clearLogs(){
+document.getElementById("logs").innerHTML="> Terminal cleared. Waiting for commands...";
+}
+
+systemScan();
+
+let running=false;
+
+async function runPipeline(){
+if(running)return;
+running=true;
+let stages=document.querySelectorAll(".stage");
+let logs=document.getElementById("logs");
+stages.forEach(stage=>stage.classList.remove("active"));
+logs.innerHTML="> Initializing CI/CD pipeline...";
+for(let i=0;i<stages.length;i++){
+stages[i].classList.add("active");
+let name=stages[i].innerText.replace(/\n/g," ");
+logs.innerHTML+="<br>> Executing "+name+"...";
+await new Promise(resolve=>setTimeout(resolve,1000));
+logs.innerHTML+=" SUCCESS";
+logs.scrollTop=logs.scrollHeight;
+}
+logs.innerHTML+="<br><br>> 🚀 DEMO PIPELINE COMPLETED SUCCESSFULLY!";
+running=false;
+}
+
+function resetPipeline(){
+if(running)return;
+document.querySelectorAll(".stage").forEach(stage=>stage.classList.remove("active"));
+document.getElementById("logs").innerHTML="> Pipeline reset. Waiting for next execution...";
+}
+</script>
+
+</body>
+</html>
