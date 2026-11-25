@@ -1,9 +1,47 @@
+#!/bin/bash
+
+# ==========================================
+# ULTIMATE NGINX DEVOPS AUTOMATION
+# CREATED BY CHAITANYA THITE
+# ==========================================
+
+nginx_demo() {
+
+    echo "=========================================="
+    echo "   ULTIMATE NGINX AUTOMATION STARTED"
+    echo "=========================================="
+
+    # UPDATE SYSTEM
+    echo "[1] Updating system packages..."
+
+    apt update -y
+
+    # INSTALL NGINX
+    echo "[2] Installing NGINX..."
+
+    if ! command -v nginx >/dev/null 2>&1; then
+        apt install nginx -y
+    else
+        echo "NGINX is already installed."
+    fi
+
+    # CREATE WEB DIRECTORY
+    echo "[3] Creating web directory..."
+
+    mkdir -p /var/www/html
+
+    # CREATE HTML WEBSITE
+    echo "[4] Creating DevOps dashboard..."
+
+    cat > /var/www/html/index.html <<'HTML'
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ULTIMATE DEVOPS COMMAND CENTER</title>
+
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#050910;color:#00ff9c;font-family:Courier New,monospace;overflow-x:hidden}
@@ -39,6 +77,7 @@ footer{text-align:center;padding:25px;color:#53716b;border-top:1px solid #00ff9c
 @media(max-width:600px){header h1{font-size:19px}.status{justify-content:flex-start}}
 </style>
 </head>
+
 <body>
 
 <header>
@@ -58,6 +97,7 @@ footer{text-align:center;padding:25px;color:#53716b;border-top:1px solid #00ff9c
 <h2 class="title">▰ SYSTEM RESOURCE MONITOR</h2>
 
 <div class="grid">
+
 <div class="card">
 <h3>⚡ CPU USAGE</h3>
 <div class="value" id="cpu">72%</div>
@@ -85,11 +125,13 @@ footer{text-align:center;padding:25px;color:#53716b;border-top:1px solid #00ff9c
 <p>Mbps (simulated traffic)</p>
 <p>Network monitoring demo</p>
 </div>
+
 </div>
 
 <h2 class="title">▰ DEVOPS INFRASTRUCTURE</h2>
 
 <div class="grid">
+
 <div class="card"><h3>🐧 LINUX SERVER</h3><p>OS: Ubuntu Linux</p><p>Status: <b class="online">● DEMO ONLINE</b></p></div>
 <div class="card"><h3>🐳 DOCKER ENGINE</h3><p>Container Management</p><p>Status: <b class="online">● DEMO READY</b></p></div>
 <div class="card"><h3>☸️ KUBERNETES</h3><p>Container Orchestration</p><p>Status: <b class="online">● DEMO READY</b></p></div>
@@ -98,11 +140,13 @@ footer{text-align:center;padding:25px;color:#53716b;border-top:1px solid #00ff9c
 <div class="card"><h3>🌐 NGINX SERVER</h3><p>Web Server / Reverse Proxy</p><p>Status: <b class="online">● PAGE SERVED</b></p></div>
 <div class="card"><h3>🏗️ TERRAFORM</h3><p>Infrastructure as Code</p><p>Status: <b class="online">● DEMO READY</b></p></div>
 <div class="card"><h3>📊 PROMETHEUS</h3><p>Metrics Monitoring</p><p>Status: <b class="online">● DEMO READY</b></p></div>
+
 </div>
 
 <h2 class="title">▰ CI/CD AUTOMATION PIPELINE</h2>
 
-<div class="pipeline" id="pipeline">
+<div class="pipeline">
+
 <div class="stage">01<br>GIT CHECKOUT</div>
 <div class="stage">02<br>BUILD</div>
 <div class="stage">03<br>UNIT TEST</div>
@@ -111,6 +155,7 @@ footer{text-align:center;padding:25px;color:#53716b;border-top:1px solid #00ff9c
 <div class="stage">06<br>DOCKER BUILD</div>
 <div class="stage">07<br>DOCKER PUSH</div>
 <div class="stage">08<br>DEPLOY</div>
+
 </div>
 
 <center>
@@ -153,6 +198,7 @@ VERSION 1.0 | SYSTEM SIMULATION MODE
 </footer>
 
 <script>
+
 function updateClock(){
 document.getElementById("clock").innerText="TIME: "+new Date().toLocaleTimeString();
 }
@@ -233,7 +279,41 @@ if(running)return;
 document.querySelectorAll(".stage").forEach(stage=>stage.classList.remove("active"));
 document.getElementById("logs").innerHTML="> Pipeline reset. Waiting for next execution...";
 }
+
 </script>
 
 </body>
 </html>
+
+HTML
+
+    # SET PERMISSIONS
+    echo "[5] Setting permissions..."
+
+    chmod 644 /var/www/html/index.html
+
+    # ENABLE NGINX
+    echo "[6] Starting NGINX..."
+
+    systemctl enable nginx
+    systemctl restart nginx
+
+    # CHECK NGINX
+    echo "[7] Checking NGINX status..."
+
+    if systemctl is-active --quiet nginx; then
+        echo "NGINX IS RUNNING SUCCESSFULLY!"
+    else
+        echo "NGINX FAILED TO START!"
+        return 1
+    fi
+
+    echo "=========================================="
+    echo "DEPLOYMENT COMPLETED SUCCESSFULLY!"
+    echo "CREATED BY CHAITANYA THITE"
+    echo "=========================================="
+
+}
+
+# EXECUTE FUNCTION
+nginx_demo
